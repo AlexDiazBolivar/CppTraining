@@ -1,0 +1,33 @@
+{
+    // See https://go.microsoft.com/fwlink/?LinkId=733558
+    // for the documentation about the tasks.json format
+    "version": "2.0.0",
+    "tasks": [
+        // {
+        //     "label": "cmake",
+        //     "type": "shell",
+        //     "options": {
+        //         "cwd": "${workspaceRoot}/build"
+        //     },
+        //     "command": "cmake \"MinGW Makefiles\"  ${workspaceRoot}",
+        // },
+        {
+            "label": "run src/main",
+            "type": "shell",
+            "options": {
+                "cwd": "${workspaceRoot}/build/src"
+            },
+            // "dependsOn": ["cmake"],
+            "command": ".\\CPPTraining_run.exe",
+        },
+        {
+            "label": "run tst/main",
+            "type": "shell",
+            "options": {
+                "cwd": "${workspaceRoot}/build/tst"
+            },
+            // "dependsOn": ["cmake"],
+            "command": ".\\CPPTraining_tst.exe",
+        },
+    ]
+}
