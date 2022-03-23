@@ -17,24 +17,24 @@
 
 ### Follow the structure
 
-Se sigue la estructura
-
-|.vscode
-|build
-|lib
-|| googletest (git clone)
+<pre>
+|-- .vscode
+|-- build
+|-- lib
+|  `-- googletest (git clone)
 |
-|src
-|| *.cpp
-|| main.cpp
-|| CMakeLists.txt
+|--src
+|  |-- *.cpp
+|  |-- main.cpp
+|  `-- CMakeLists.txt
 |
-|tst
-|| *.cpp
-|| main.cpp
-|| CMakeLists.txt
+|--tst
+|  |-- *.cpp
+|  |-- main.cpp
+|  `-- CMakeLists.txt
 |
-|CMakeLists.txt
+`--CMakeLists.txt
+</pre>
 
 ## Build and launch
 
