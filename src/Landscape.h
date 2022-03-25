@@ -12,29 +12,46 @@ namespace training
 	{
 
 	public:
-		Landscape(const std::string& name)
+		inline Landscape(const std::string& name)
 		{
+			circs = new const Circle* [20]; // Initial allocation
+			SetName(name);
+			size = 0;
 		}
-		std::string Name() const { throw NotImplException(); }
-		void SetName(const std::string& name)
+
+		// Getters
+		inline std::string Name() const { return name; }
+
+		// Setters
+		inline void SetName(const std::string& name) { this->name = name; }
+
+		// Member functions
+		inline void Add (const Circle* circle)
 		{
-			throw NotImplException();
+			circs[size++] = circle;
 		}
-		void Add (const Circle* circle)
+		inline float Area() const
 		{
-			throw NotImplException();
+			float total = 0;
+			for (int i=0; i<size; i++)
+			{
+				total += circs[i]->Area();
+			}
+			return total;
 		}
-		float Area() const
+		inline float Perimeter() const
 		{
-			throw NotImplException();
-		}
-		float Perimeter() const
-		{
-			throw NotImplException();
+			float total = 0;
+			for (int i=0; i<size; i++)
+			{
+				total += circs[i]->Perimeter();
+			}
+			return total;
 		}
 
 	private:
 		std::string name;
+		const Circle** circs;
+		int size;
 	};
-
 }
