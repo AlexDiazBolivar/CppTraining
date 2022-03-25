@@ -3,7 +3,7 @@
 namespace training::geometry
 {
 
-	class RgbColor
+    class RgbColor
 	{
 	public:
 		static RgbColor BLACK;
@@ -12,36 +12,26 @@ namespace training::geometry
 		static RgbColor GREEN;
 		static RgbColor BLUE;
 
-		RgbColor() { rgb = 0; }
-		RgbColor(int rgb)
-		{
-			this->rgb = rgb;
-		}
-		RgbColor(int r, int g, int b)
-		{
-			Set(r, g, b);
-		}
-		int Red() const { return (rgb >> 16); }
-		int Green() const { return (rgb >> 8) & 0xFF; }
-		int Blue() const { return rgb & 0xFF; }
-		int Value() const { return rgb; }
-		void SetRed(int value)
-		{
-			Set(value, Green(), Blue());
-		}
-		void SetGreen(int value)
-		{
-			Set(Red(), value, Blue());
-		}
-		void SetBlue(int value);
+		// Constructor
+		inline RgbColor() { rgb = 0; }
+		inline RgbColor(int rgb) { this->rgb = rgb; }
+		inline RgbColor(int r, int g, int b) { Set(r, g, b); }
+
+		// Getters
+		inline int Red() const { return (rgb >> 16); }
+		inline int Green() const { return (rgb >> 8) & 0xFF; }
+		inline int Blue() const { return rgb & 0xFF; }
+
+		inline int Value() const { return rgb; }
+
+		// Setters
+		inline void SetRed(int value) { Set(value, Green(), Blue()); }
+		inline void SetGreen(int value) { Set(Red(), value, Blue()); }
+		inline void SetBlue(int value) { Set(Red(), Green(), value); }
+
 		void Set(int r, int g, int b);
 
 	private:
 		int rgb;
 	};
-
-	inline void RgbColor::Set(int r, int g, int b)
-	{
-		rgb = r << 16 | g << 8 | b;
-	}
 }
