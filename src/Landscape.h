@@ -12,11 +12,54 @@ namespace training
 	{
 
 	public:
+		// TODO[AD]: Name the different constructors and operators + explanation
 		inline Landscape(const std::string& name)
 		{
 			circs = new const Circle* [20]; // Initial allocation
 			SetName(name);
 			size = 0;
+		}
+
+		inline Landscape(const Landscape& other) 
+		: name(other.name), size(other.size)
+		{
+			circs = new const Circle*[20];
+			for (int i=0; i<size; i++)
+			{
+				circs[i] = other.circs[i];
+			}
+		}
+
+		inline Landscape(Landscape&& other)
+		 : name(other.name), size(other.size), circs(other.circs)
+		{
+			other.circs = nullptr;
+		}
+		
+		inline Landscape& operator = (Landscape&& other)
+		{
+			name = other.name;
+			size = other.size;
+			circs = other.circs;
+			other.circs = nullptr;
+			return *this;
+		}
+
+		inline Landscape& operator = (const Landscape& other)
+		{
+			name = other.name;
+			size = other.size;
+			for (int i=0; i<size; i++)
+			{
+				circs[i] = other.circs[i];
+			}
+			return *this;
+		}
+
+		inline ~Landscape() 
+		{ 
+			if (circs == nullptr)
+				delete[] circs; 
 		}
 
 		// Getters
