@@ -12,7 +12,7 @@ namespace training
 	{
 
 	public:
-		// TODO[AD]: Name the different constructors and operators + explanation
+		// Constructor
 		inline Landscape(const std::string& name)
 		{
 			circs = new const Circle* [20]; // Initial allocation
@@ -20,6 +20,7 @@ namespace training
 			size = 0;
 		}
 
+		// Copy constructor
 		inline Landscape(const Landscape& other) 
 		: name(other.name), size(other.size)
 		{
@@ -30,21 +31,14 @@ namespace training
 			}
 		}
 
+		// Move constructor
 		inline Landscape(Landscape&& other)
 		 : name(other.name), size(other.size), circs(other.circs)
 		{
 			other.circs = nullptr;
 		}
-		
-		inline Landscape& operator = (Landscape&& other)
-		{
-			name = other.name;
-			size = other.size;
-			circs = other.circs;
-			other.circs = nullptr;
-			return *this;
-		}
 
+		// Copy assignment operator
 		inline Landscape& operator = (const Landscape& other)
 		{
 			name = other.name;
@@ -56,6 +50,17 @@ namespace training
 			return *this;
 		}
 
+		// Move assignment operator	
+		inline Landscape& operator = (Landscape&& other)
+		{
+			name = other.name;
+			size = other.size;
+			circs = other.circs;
+			other.circs = nullptr;
+			return *this;
+		}
+
+		// Destructor
 		inline ~Landscape() 
 		{ 
 			if (circs == nullptr)
