@@ -30,4 +30,17 @@ namespace training::test
                     c1.Blue() == 0x30);
     }
 
+    TEST_F (RgbColorTest, InvalidRed)
+    {
+        ASSERT_THROW (c1.SetRed(-5), std::invalid_argument);
+    }
+    TEST_F (RgbColorTest, InvalidGreen)
+    {
+        ASSERT_THROW (c1.SetGreen(-5), std::invalid_argument);
+    }
+    TEST_F (RgbColorTest, InvalidBlue)
+    {
+        ASSERT_THROW (c1.SetGreen(270), std::invalid_argument);
+    }
+
 }

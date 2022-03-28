@@ -26,7 +26,7 @@ namespace training::geometry
 		inline RgbColor Color() const { return color; }
 
 		// Setters
-		inline void SetRadius(float radius) { this->radius = radius; }
+		void SetRadius(float radius);
 		inline void SetName(const std::string& name) { this->name = name; }
 		inline void SetColor(RgbColor color) { this->color = color; }
 

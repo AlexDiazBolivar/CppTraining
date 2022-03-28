@@ -24,6 +24,16 @@ protected:
     Circle c2;
 };
 
+void func(Landscape ls)
+{
+
+}
+TEST_F(LandscapeTest, MemoryCorrupt)
+{
+    func(sut);
+    sut.Area();
+}
+
 TEST_F(LandscapeTest, Name)
 {
     ASSERT_EQ("Test", sut.Name());

@@ -36,11 +36,18 @@ TEST_F(RectangleTest, Color)
 {
   ASSERT_EQ(color.Value(), r1.Color().Value());
 }
+
 TEST_F(RectangleTest, Area)
 {
   ASSERT_DOUBLE_EQ(50, r1.Area());
 }
+
 TEST_F(RectangleTest, Perimeter)
 {
   ASSERT_DOUBLE_EQ(30, r1.Perimeter());
+}
+
+TEST_F(RectangleTest, SizeError)
+{
+  ASSERT_THROW(r1.SetDimension(-1, -1), std::invalid_argument);
 }

@@ -1,4 +1,5 @@
 #include "RgbColor.h"
+#include <stdexcept>
 
 namespace training::geometry
 {
@@ -10,6 +11,12 @@ namespace training::geometry
 
 	void RgbColor::Set(int r, int g, int b)
 	{
-		rgb = r << 16 | g << 8 | b;
+		if (r >= 0 && r <= 255 && 
+			g >= 0 && g <= 255 && 
+			b >= 0 && b <= 255)
+			rgb = r << 16 | g << 8 | b;
+
+		else
+			throw std::invalid_argument("rgb must be between 0-255");
 	}
 }

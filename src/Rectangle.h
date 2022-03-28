@@ -3,7 +3,8 @@
 #include "RgbColor.h"
 
 
-namespace training::geometry {
+namespace training::geometry 
+{
 	class Rectangle
 	{
 	public:
@@ -22,12 +23,8 @@ namespace training::geometry {
 		inline std::string Name() const { return name; }
 		inline RgbColor Color() const { return color; }
 
-		// Getters
-		inline void SetDimension(float width, float height)
-		{
-			this->width = width;
-			this->height = height;
-		}
+		// Setters
+		void SetDimension(float width, float height);
 		inline void SetName(const std::string& name) { this->name = name; }
 		inline void SetColor(RgbColor color) { this->color = color; }
 

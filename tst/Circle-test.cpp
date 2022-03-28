@@ -45,3 +45,8 @@ TEST_F(CircleTest, Perimeter)
 {
   ASSERT_NEAR(62.8f, c1.Perimeter(), .2f);
 }
+
+TEST_F(CircleTest, InvalidRadius)
+{
+  ASSERT_THROW(c1.SetRadius(-1), std::invalid_argument);
+}
