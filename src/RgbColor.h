@@ -1,4 +1,5 @@
 #pragma once
+#include <iostream>
 
 namespace training::geometry
 {
@@ -6,6 +7,7 @@ namespace training::geometry
     class RgbColor
 	{
 	public:
+		// Definitions
 		static RgbColor BLACK;
 		static RgbColor WHITE;
 		static RgbColor RED;
@@ -31,7 +33,14 @@ namespace training::geometry
 
 		void Set(int r, int g, int b);
 
+		// Operators
+		inline operator int () { return rgb; }
+		RgbColor operator + (const RgbColor& c2) const;
+
 	private:
 		int rgb;
 	};
+
+	std::ostream& operator << (std::ostream& o, const RgbColor& c);
+
 }

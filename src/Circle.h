@@ -3,6 +3,7 @@
 #include <cmath>
 #include <string>
 #include "RgbColor.h"
+#include <iostream>
 
 
 namespace training::geometry
@@ -34,9 +35,19 @@ namespace training::geometry
 		float Area() const;
 		float Perimeter() const;
 
+		// Operators
+		Circle operator + (const Circle& c2);
+		Circle& operator ++ ();
+		void operator ++ (int);
+		Circle& operator += (float val);
+		
 	private:
 		std::string name;
 		RgbColor color;
 		float radius;
 	};
+
+	// Operators
+	std::ostream& operator << (std::ostream& o, const Circle& c);
+
 }

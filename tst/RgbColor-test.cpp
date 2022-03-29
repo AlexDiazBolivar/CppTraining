@@ -43,4 +43,24 @@ namespace training::test
         ASSERT_THROW (c1.SetGreen(270), std::invalid_argument);
     }
 
+    TEST_F (RgbColorTest, IntConversion)
+    {
+        RgbColor color (2,3,6);
+        int rgb = c1;
+    }
+
+    TEST_F (RgbColorTest, ColorAddition)
+    {
+        RgbColor c1 (1,2,3);
+        RgbColor c2 (3,2,1);
+        RgbColor result;
+        result = c1 + c2;
+        ASSERT_EQ(result.Value(), 0x040404);
+    }
+
+   TEST_F (RgbColorTest, ColorStream)
+    {
+        cout << c1 << endl;
+    }
+
 }
