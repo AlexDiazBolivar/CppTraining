@@ -29,8 +29,8 @@ namespace training::geometry
 		inline void SetColor(RgbColor color) { this->color = color; }
 
 		// Member functions
-		inline float Area() { return Width() * Height(); }
-		inline float Perimeter() { return (Width() + Height())*2; }
+		inline float Area() const { return Width() * Height(); }
+		inline float Perimeter() const { return (Width() + Height())*2; }
 
 	private:
 		std::string name;
@@ -38,5 +38,8 @@ namespace training::geometry
 		float width;
 		float height;
 	};
+	
+	// Operators
+	std::ostream& operator << (std::ostream& o, const Rectangle& r);
 
 }

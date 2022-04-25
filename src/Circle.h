@@ -11,15 +11,25 @@ namespace training::geometry
 	class Circle
 	{
 	public:
+		inline static int Count() { return count; }
+
 		// Constructor
 		inline Circle() : Circle(1, "noname", RgbColor::BLACK) {}
+
+		// Copy constructor
+		inline Circle(const Circle& other)
+			: Circle(other.radius, other.name, other.color)
+		{}
 
 		inline Circle(float radius, const std::string& name, RgbColor color)
 		{
 			SetRadius(radius);
 			SetName(name);
 			SetColor(color);
+			count++;
 		}
+
+		inline ~Circle() { count--; }
 
 		// Getters
 		inline float Radius() const { return radius; }
@@ -42,6 +52,7 @@ namespace training::geometry
 		Circle& operator += (float val);
 		
 	private:
+		static int count;
 		std::string name;
 		RgbColor color;
 		float radius;

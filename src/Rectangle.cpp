@@ -10,4 +10,10 @@ namespace training::geometry
         this->width = width;
         this->height = height;
     }
+	  
+    std::ostream& operator << (std::ostream& o, const Rectangle& r)
+    {
+        o << "a rectangle" << r.Name() << "with area of " << r.Area();
+        return o;
+	  }
 }

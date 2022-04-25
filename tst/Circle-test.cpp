@@ -23,6 +23,18 @@ protected:
   Circle c1;
 };
 
+TEST_F(CircleTest, ResourceTest)
+{
+    Circle* c1 = new Circle();
+    Circle* c2 = new Circle();
+    Circle* c3 = new Circle();
+    EXPECT_EQ(4, Circle::Count());
+    delete c1;
+    delete c2;
+    delete c3;
+    ASSERT_EQ(1, Circle::Count());
+}
+
 TEST_F(CircleTest, Name)
 {
   ASSERT_EQ(name, c1.Name());

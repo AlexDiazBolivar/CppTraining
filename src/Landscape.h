@@ -1,6 +1,8 @@
 #pragma once
 
 #include <string>
+#include <vector>
+#include <memory>
 #include "Circle.h"
 #include "NotImplException.h"
 
@@ -8,6 +10,10 @@
 namespace training
 {
 	using training::geometry::Circle;	
+	using CircleUptr=std::unique_ptr<Circle>;
+	using CircleSptr=std::shared_ptr<Circle>;
+	using CircleWptr=std::weak_ptr<Circle>;
+
 	class Landscape
 	{
 
@@ -15,56 +21,7 @@ namespace training
 		// Constructor
 		inline Landscape(const std::string& name)
 		{
-			circs = new const Circle* [20]; // Initial allocation
 			SetName(name);
-			size = 0;
-		}
-
-		// Copy constructor
-		inline Landscape(const Landscape& other) 
-		: name(other.name), size(other.size)
-		{
-			circs = new const Circle*[20];
-			for (int i=0; i<size; i++)
-			{
-				circs[i] = other.circs[i];
-			}
-		}
-
-		// Move constructor
-		inline Landscape(Landscape&& other)
-		 : name(other.name), size(other.size), circs(other.circs)
-		{
-			other.circs = nullptr;
-		}
-
-		// Copy assignment operator
-		inline Landscape& operator = (const Landscape& other)
-		{
-			name = other.name;
-			size = other.size;
-			for (int i=0; i<size; i++)
-			{
-				circs[i] = other.circs[i];
-			}
-			return *this;
-		}
-
-		// Move assignment operator	
-		inline Landscape& operator = (Landscape&& other)
-		{
-			name = other.name;
-			size = other.size;
-			circs = other.circs;
-			other.circs = nullptr;
-			return *this;
-		}
-
-		// Destructor
-		inline ~Landscape() 
-		{ 
-			if (circs == nullptr)
-				delete[] circs; 
 		}
 
 		// Getters
@@ -74,32 +31,36 @@ namespace training
 		inline void SetName(const std::string& name) { this->name = name; }
 
 		// Member functions
-		inline void Add (const Circle* circle)
+		inline void Add (CircleSptr sp)
 		{
-			circs[size++] = circle;
+			// The shared_ptr is implicitly converted into a weak_ptr 
+			circles.push_back(sp);
 		}
+
 		inline float Area() const
 		{
 			float total = 0;
-			for (int i=0; i<size; i++)
+			for (int i=0; i<circles.size(); i++)
 			{
-				total += circs[i]->Area();
+				if (auto sp = circles[i].lock())
+					total += sp->Area();
 			}
 			return total;
 		}
+
 		inline float Perimeter() const
 		{
 			float total = 0;
-			for (int i=0; i<size; i++)
+			for (int i=0; i<circles.size(); i++)
 			{
-				total += circs[i]->Perimeter();
+				if (auto sp = circles[i].lock())
+					total += sp->Perimeter();
 			}
 			return total;
 		}
 
 	private:
 		std::string name;
-		const Circle** circs;
-		int size;
+		std::vector<CircleWptr> circles;
 	};
 }

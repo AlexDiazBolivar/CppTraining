@@ -3,6 +3,8 @@
 
 namespace training::geometry 
 { 
+    int Circle::count = 0;
+
     // Setters
     void Circle::SetRadius(float radius)
     { 
@@ -21,7 +23,7 @@ namespace training::geometry
     {
         return (float) (M_PI * Radius() * 2);
     }
-		
+
     // Operators
     Circle Circle::operator + (const Circle& c2)	
 		{
